@@ -24,3 +24,6 @@ func incrementAge(age int, wg *sync.WaitGroup) int {
 async.Executor(incrementAge, age, result, wg)
 ```
 > **incrementAge** is a function, **age** is input param, **result** is output channel, and **wg** is *sync.WaitGroup.
+
+### Found any issues or go any suggestions?
+Please raise a github issue. Thanks :).

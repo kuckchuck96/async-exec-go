@@ -25,5 +25,16 @@ async.Executor(incrementAge, age, result, wg)
 ```
 > **incrementAge** is a function, **age** is input param, **result** is output channel, and **wg** is *sync.WaitGroup.
 
+- Now you can use either **Wait()** in ***sync.WaitGroup** to wait for the completion of goroutines or **Result(chan, time.Duration)** recently introduced to wait for the requested channel for the set amount of duration.
+
+```
+data, err := Result(result, 6*time.Second)
+if err != nil {
+	fmt.Println("Err:", err)
+} else {
+	fmt.Println("Data:", data)
+}
+```
+
 ### Found any issues or go any suggestions?
 Please raise a github issue. Thanks :).

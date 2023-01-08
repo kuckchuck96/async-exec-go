@@ -13,14 +13,15 @@ import (
 // For output channels are mandatory as this uses goroutine. You can create a channel
 // of any type or struct.
 // Params:
-// in -> onput param
+// in -> input param
 // out -> output channel
 // wg -> wait group
-func Executor[In, Out any](f func(In, *sync.WaitGroup) Out, in In, out chan Out, wg *sync.WaitGroup) {
+func Executor[In, Out any](f func(In) Out, in In, out chan Out, wg *sync.WaitGroup) {
 	wg.Add(1)
-	go func() {
-		out <- f(in, wg)
-	}()
+	go func(in In, wg *sync.WaitGroup) {
+		out <- f(in)
+		wg.Done()
+	}(in, wg)
 }
 
 // Result returns the actual data by listening to the

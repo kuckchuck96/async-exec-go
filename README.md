@@ -11,12 +11,11 @@ go get -u github.com/kuckchuck96/async-exec-go
 - Create your function with the below format or pattern.
 
 ```
-func incrementAge(age int, wg *sync.WaitGroup) int {
-	defer wg.Done()
+func incrementAge(age int) int {
 	return age + 3
 }
 ```
-> Please note you function should only accept 2 input params i.e. param1 of x type and param2 of *sync.WaitGroup type.
+> Please note you function should only accept 2 input params i.e. param1 of any type.
 
 - You can call above function using **Executor** as follows:
 
